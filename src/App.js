@@ -4,6 +4,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import io from "socket.io-client";
 import SwitchExample from "./components/ReactSwitch.js";
+
 import {
   CartesianGrid,
   BarChart,
@@ -196,11 +197,6 @@ function App() {
 
         aux["value"] = priceStocks.value;
         data_info[priceStocks.ticker].push(aux);
-
-        console.log(priceStocks.ticker);
-        var largo = data_info[priceStocks.ticker].length;
-        console.log(data_info[priceStocks.ticker][largo - 1]);
-
         setdataStocks(data_info);
 
         var min = min_price_stocks_info[priceStocks.ticker];
@@ -330,10 +326,13 @@ function App() {
                 </td>
 
                 <td scope="row">
+                  {console.log(dataStocks[block.ticker])}
                   <LineChart
+                    key={Math.random()}
                     width={360}
                     height={320}
                     data={dataStocks[block.ticker]}
+                    redraw={true}
                   >
                     <XAxis
                       dataKey="time"
